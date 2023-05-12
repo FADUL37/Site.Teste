@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 8px;
+      background-color: #4CAF50;
+      color: #FFF;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Tela de Login</h2>
+    <form class="login-form">
+      <label for="analystName">Nome do Analista:</label>
+      <input type="text" id="analystName" name="analystName" required>
+      <br>
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password" required>
+      <br>
+      <input type="submit" value="Entrar">
+    </form>
+    <p id="error-message" style="color: red; display: none;">Nome do analista incorreto. Entre em contato com o suporte.</p>
+  </div>
+
+  <script>
+    const allowedUsers = {
+      'Israel': '1234',
+      'Josi': '1234',
+      'Luiz': '1234',
+      'Lucas': '1234',
+      'Felipe': '1234',
+      'Vilmar': '1234',
+      'Emanuel': '1234',
+      'Douglas': '1234',
+      'Vinicius': '1234',
+      'Patrick': '1234'
+    };
+
+    document.querySelector('.login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const analystName = document.getElementById('analystName').value;
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('error-message');
+
+      if (allowedUsers[analystName] === password) {
+        errorMessage.style.display = 'none';
+        localStorage.setItem('analystName', analystName); // Adicionado
+        window.location.href = 'tabela.html';
+      } else {
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
